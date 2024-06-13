@@ -30,11 +30,6 @@ async function pdfToImages(pdfPath) {
     console.error('Error converting PDF to images:', err);
   }
 }
-
-const pdfPath = './resume.pdf';
-
-
-
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_KEY
 });
@@ -56,10 +51,11 @@ async function getGPT4Response(prompt) {
       console.error('Error getting GPT-4 response:', error);
       return null;
     }
-  }
-  const imgPath = './resume-2.jpg'; 
+}
+
+const main = () => {
+  const imgPath="./resume-2.jpg"; // path of the image
   const base64Image = imageToBase64(imgPath);
-  console.log(base64Image)
   if (base64Image) {
     const prompt = `Extract the email of the candidate from this image: ${base64Image}`;
     getGPT4Response(prompt).then((response) => {
@@ -68,4 +64,13 @@ async function getGPT4Response(prompt) {
   } else {
     console.error('Failed to convert image to base64.');
   }
+}
+
+
+const pdfPath = './resume.pdf';
+
+// Run this function to generate images of the pdf : already generated!
 // pdfToImages(pdfPath);
+
+// After generating images you need to run main()
+main();
