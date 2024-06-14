@@ -2,9 +2,11 @@ const { OpenAI } = require('openai');
 require('dotenv').config();
 
 const startConversation = async(req, res) => {
-    const data = req.body.data;
-
-    const prompt = "You are a Hiring Manager, you have data of some candidates, according to that data, you need to answer users's question.";
+    const data = JSON.stringify(req.body.data);
+    if(!data){
+        return;
+    }
+    const prompt = "You are a Hiring Manager, you have data of some candidates, according to that data, you need to answer users's question. Just give one liner answers";
     const openai = new OpenAI({apiKey: process.env.OPENAI_KEY});
 
     try {
@@ -100,5 +102,7 @@ const sendMessage = async(req, res) => {
     }
 }
 
-
-startConversation();
+module.exports = {
+    startConversation, 
+    sendMessage,
+}
