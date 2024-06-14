@@ -3,10 +3,7 @@ require('dotenv').config();
 
 const startConversation = async(req, res) => {
     const data = JSON.stringify(req.body.data);
-    if(!data){
-        return;
-    }
-    const prompt = "You are a Hiring Manager, you have data of some candidates, according to that data, you need to answer users's question. Just give one liner answers";
+    const prompt = "You are a Hiring Manager, you have data of some candidates, according to that data, you need to answer users's question. Just give one line answers don't explain too much. Start the chat by greeting the user.";
     const openai = new OpenAI({apiKey: process.env.OPENAI_KEY});
 
     try {
