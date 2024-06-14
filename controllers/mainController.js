@@ -16,7 +16,7 @@
                 messages: [
                     {
                         "role": "system",
-                        "content": "Your task is to extract the required details of the candidate from the data provided by the user. The output should follow this format: \n\n { \"Name\": \"CANDIDATE_NAME\", \"PhoneNo\": \"0000000000\", \"Email\": \"example@example.com\", ... }. \n\n If any information is missing, denote it as \"N/A\" and proceed. Ensure all values are strings and avoid creating arrays or other data structures for any key. \n\n The required fields are: \n - Name\n - Email\n - Location\n - PhoneNo\n - SoftSkills\n - Education\n - Experience\n - Skills\n - Achievements"
+                        "content": "Your task is to extract the required details of the candidate from the data provided by the user. The output should follow this format: \n\n { \"Name\": \"CANDIDATE_NAME\", \"PhoneNo\": \"0000000000\", \"Email\": \"example@example.com\", ... }. \n\n If any information is missing, denote it as \"N/A\" and proceed. Ensure all values are strings and avoid creating arrays or other data structures for any key. Keep the points short. \n\n The required fields are: \n - Name\n - Email\n - Location\n - PhoneNo\n - SoftSkills\n - Education\n - Experience\n - Skills\n - Achievements"
                       },                      
                   { role: 'user', content: prompt },
                 ],
@@ -25,7 +25,7 @@
             const summary = response.choices[0].message.content;
             return summary;
         } catch (error) {
-            console.error('Error getting GPT-4 response:', error);
+            console.error('Error getting GPT-4o response:', error);
             return null;
         }
     }
