@@ -72,15 +72,16 @@ const calculateScore = async (role, field, fieldValue) => {
 const handleResume = async (req, res) => {
     try {
         const files = req.files;
+        const role = req.body.role;
         const responses = [];
         for (const file of files) {
             const pdfData = await pdf(file.buffer);
             const gptRes = await getGPTResponse(pdfData.text);
             console.log(gptRes);
             const data = convertToJSON(gptRes);
-            const scoreSkill = await calculateScore("MERN full stack developer", "Skill", data.Skills);
+            const scoreSkill = await calculateScore(role, "Skill", data.Skills);
             console.log("Skill = ", scoreSkill);
-            const scoreExperience = await calculateScore("MERN full stack developer", "Experience", data.Experience);
+            const scoreExperience = await calculateScore(role, "Experience", data.Experience);
             console.log("Experience = ", scoreExperience);
 
             data.score = (scoreSkill + scoreExperience) / 2;
